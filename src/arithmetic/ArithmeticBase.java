@@ -1,19 +1,33 @@
 package arithmetic;
 
-import static arithmetic.ArithmeticBase.Operation.DIVIDE;
-import static arithmetic.ArithmeticBase.Operation.MINUS;
-import static arithmetic.ArithmeticBase.Operation.PLUS;
-import static arithmetic.ArithmeticBase.Operation.TIMES;
+import java.util.Scanner;
 
 public class ArithmeticBase {
+        public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the first number: ");
+        double x = sc.nextDouble();
+
+        System.out.println("Enter the second number: ");
+        double y = sc.nextDouble();
+
+        System.out.println("Enter the arithmetic operation to perform: ");
+        String operationString = sc.next();
+
+        Operation operation = Operation.valueOf(operationString.toUpperCase());
+
+        ArithmeticBase calculator = new ArithmeticBase();
+        double result = calculator.calculate(x, y, operation);
+
+        System.out.println("Result: " + result);
+    }
     public double x, y;
-    private String operation;
 
     public enum Operation {
         PLUS, MINUS, TIMES, DIVIDE
     }
 
-    public double calculate(int x, int y) {
+    public double calculate(double x, double y, Operation operation) {
         switch (operation) {
             case PLUS:
                 return x + y;
@@ -27,4 +41,6 @@ public class ArithmeticBase {
                 throw new AssertionError("Unknown operation: " + operation);
         }
     }
+
+
 }
